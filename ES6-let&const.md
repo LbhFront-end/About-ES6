@@ -1,12 +1,12 @@
 # let 和 const 命令
 
-1. [let 命令](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const#let 命令)
+1. [let 命令](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const#let.md#let)
 2. [块级作用域](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const.md#块级作用域)
-3. [const 命令](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const.md#const 命令)
+3. [const 命令](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const.md#const)
 4. [顶层对象的属性](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const.md#顶层对象的属性)
-5. [global 对象](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const.md#global 对象)
+5. [global](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const.md#global)
 
-## let 命令
+## let
 
 ### 基本用法
 
@@ -421,7 +421,7 @@ if (true)
 
 ------
 
-## const 命令
+## const
 
 ### 基本用法
 
@@ -571,7 +571,7 @@ window.b // undefined
 
 上面代码中，全局变量`a`由`var`命令声明，所以它是顶层对象的属性；全局变量`b`由`let`命令声明，所以它不是顶层对象的属性，返回`undefined`。
 
-## global 对象
+## global
 
 ES5 的顶层对象，本身也是一个问题，因为它在各种实现里面是不统一的。
 

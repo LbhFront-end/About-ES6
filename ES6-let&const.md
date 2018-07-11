@@ -1,10 +1,10 @@
 # let 和 const 命令
 
-1. [let 命令](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Let&Const.md#let 命令)
-2. [块级作用域](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Let&Const.md#块级作用域)
-3. [const 命令](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Let&Const.md#const 命令)
-4. [顶层对象的属性](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Let&Const.md#顶层对象的属性)
-5. [global 对象](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Let&Const.md#global 对象)
+1. [let 命令](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const#let 命令)
+2. [块级作用域](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const.md#块级作用域)
+3. [const 命令](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const.md#const 命令)
+4. [顶层对象的属性](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const.md#顶层对象的属性)
+5. [global 对象](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-let&const.md#global 对象)
 
 ## let 命令
 

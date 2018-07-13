@@ -1,6 +1,6 @@
 # 字符串的拓展
 
-1. [字符的 Unicode 表示法](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#字符的Unicode表示法)
+1. [字符的Unicode表示法](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#字符的Unicode表示法)
 2. [codePointAt()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#codePointAt())
 3. [String.fromCodePoint()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#String.fromCodePoint())
 4. [字符串的遍历器接口](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#字符串的遍历器接口)

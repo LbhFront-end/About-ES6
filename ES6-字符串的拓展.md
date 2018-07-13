@@ -1,9 +1,9 @@
 # 字符串的扩展
 
-1. [字符的 Unicode 表示法](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#%E5%AD%97%E7%AC%A6%E7%9A%84%20Unicode%20%E8%A1%A8%E7%A4%BA%E6%B3%95)
+1. [字符的 Unicode 表示法](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#字符的 Unicode 表示法)
 2. [codePointAt()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#codePointAt())
 3. [String.fromCodePoint()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#String.fromCodePoint())
-4. [字符串的遍历器接口](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E9%81%8D%E5%8E%86%E5%99%A8%E6%8E%A5%E5%8F%A3)
+4. [字符串的遍历器接口](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#字符串的遍历器接口)
 5. [at()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#at())
 6. [normalize()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#normalize())
 7. [includes(), startsWith(), endsWith()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#includes(),%20startsWith(),%20endsWith())

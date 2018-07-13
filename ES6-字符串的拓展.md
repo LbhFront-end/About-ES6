@@ -1,20 +1,20 @@
-# 字符串的扩展
+# 字符串的拓展
 
-1. [字符的 Unicode 表示法](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#字符的Unicode表示法)
-2. [codePointAt()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#codePointAt())
-3. [String.fromCodePoint()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#String.fromCodePoint())
-4. [字符串的遍历器接口](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#字符串的遍历器接口)
-5. [at()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#at())
-6. [normalize()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#normalize())
-7. [includes(), startsWith(), endsWith()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#includes(),%20startsWith(),%20endsWith())
-8. [repeat()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#repeat())
-9. [padStart()，padEnd()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#padStart()%EF%BC%8CpadEnd())
-10. [matchAll()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#matchAll())
-11. [模板字符串](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#模板字符串)
-12. [实例：模板编译](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#实例：模板编译)
-13. [标签模板](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#标签模板)
-14. [String.raw()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#String.raw())
-15. [模板字符串的限制](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的扩展.md#模板字符串的限制)
+1. [字符的 Unicode 表示法](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#字符的Unicode表示法)
+2. [codePointAt()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#codePointAt())
+3. [String.fromCodePoint()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#String.fromCodePoint())
+4. [字符串的遍历器接口](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#字符串的遍历器接口)
+5. [at()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#at())
+6. [normalize()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#normalize())
+7. [includes(), startsWith(), endsWith()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#includes(),%20startsWith(),%20endsWith())
+8. [repeat()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#repeat())
+9. [padStart()，padEnd()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#padStart()%EF%BC%8CpadEnd())
+10. [matchAll()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#matchAll())
+11. [模板字符串](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#模板字符串)
+12. [实例：模板编译](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#实例：模板编译)
+13. [标签模板](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#标签模板)
+14. [String.raw()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#String.raw())
+15. [模板字符串的限制](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-字符串的拓展.md#模板字符串的限制)
 
 ES6 加强了对 Unicode 的支持，并且扩展了字符串对象。
 

@@ -21,7 +21,6 @@ ES6 加强了对 Unicode 的支持，并且扩展了字符串对象。
 ------
 
 ## 字符的Unicode表示法
-
 JavaScript 允许采用`\uxxxx`形式表示一个字符，其中`xxxx`表示字符的 Unicode 码点。
 
 ```

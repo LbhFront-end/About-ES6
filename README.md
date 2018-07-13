@@ -5,4 +5,4 @@
 1. [ES6 - Start ](./ES6-Start.md)
 2. [ES6-let 和 const 命令](./ES6-let&const.md)
 3. [ES6-变量的解构赋值](./ES6-变量的解构赋值.md)
-
+4. [ES6-字符串的拓展](./ES6-字符串的拓.md)

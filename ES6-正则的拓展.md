@@ -1,17 +1,17 @@
 # 正则的扩展
 
-1. [RegExp构造函数](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#RegExp构造函数)
+1. [RegExp构造函数](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#regexp构造函数)
 2. [字符串的正则方法](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#字符串的正则方法)
 3. [u修饰符](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#u修饰符)
-4. [RegExp.prototype.unicode属性](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#RegExp.prototype.unicode属性)
+4. [RegExp.prototype.unicode属性](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#regexpprototypeunicode属性)
 5. [y修饰符](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#y修饰符)
-6. [RegExp.prototype.sticky属性](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#RegExp.prototype.sticky属性)
-7. [RegExp.prototype.flags属性](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#RegExp.prototype.flags属性)
-8. [s修饰符:dotAll模式](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#s修饰符:dotAll模式)
+6. [RegExp.prototype.sticky属性](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#regexpprototypesticky属性)
+7. [RegExp.prototype.flags属性](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#regexpprototypeflags属性)
+8. [s修饰符:dotAll模式](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#s修饰符dotall模式)
 9. [后行断言](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#后行断言)
-10. [Unicode属性类](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#Unicode属性类)
+10. [Unicode属性类](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#unicode属性类)
 11. [具名组匹配](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#具名组匹配)
-12. [String.prototype.matchAll](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#String.prototype.matchAll)
+12. [String.prototype.matchAll](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-正则的扩展.md#stringprototypematchall)
 
 ------
 

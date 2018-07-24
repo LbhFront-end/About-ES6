@@ -103,6 +103,281 @@ foo() // 101
 
 上面代码中，参数`p`的默认值是`x+1`，这时，每次调用函数foo,都会重新计算`x+1`，而不是默认`p`等于100
 
+### 与解构赋值默认值结合使用
+
+参数默认值可以与解构赋值的默认值，结合起来使用。
+
+```
+function foo({x, y = 5}){
+    console.log(x, y);
+}
+foo({}) // undefined 5
+foo({x: 1}) // 1 5
+foo({x: 1, y: 2}) // 1 2
+foo() //TypeError : Cannot read property 'x' of undefined
+```
+
+上面代码只使用了对象的解构赋值默认值，没有使用参数的默认值。只有当函数`foo`的参数是一个对象时，变量`x`和`y`才会通过解构赋值生成。如果函数`foo`调用时没有提供参数，变量`x`和`y`就不会生成，从而报错。通过提供函数参数的默认值，就可以避免这种情况
+
+```
+function ({x, y = 5} = {}){
+    console.log(x, y);
+}
+foo() // undefined 5
+```
+
+上面代码指定，如果没有提供参数，函数`foo`的参数默认为一个空对象
+
+下面是另一个解构赋值默认值的例子
+
+```
+function fetch(url, { body = '', method = 'GET', headers = {}}){
+    console.log(method);
+}
+
+fetch('http://example.com',{})
+// 'GET'
+
+fetch('http://example.com')
+//报错
+```
+
+上面代码中，如果函数`fetch`的第二个参数是一个对象，就可以为它的三个属性设置默认值。这种写法不能省略第二个参数，如果结合函数参数的默认值，就可以省略第二个参数。这时就出现了双重默认值
+
+```
+function fetch(url, {body = '', method = 'GET', headers ={}} = {}){
+    console.log(method);
+}
+
+fetch('http://example.com')
+```
+
+上面代码中，函数`fetch`没有第二个参数，函数参数的默认值就会生效，然后才是结构赋值的默认值生效，变量`method`才会取到默认值`GET`
+
+```
+// 写法1
+function m1({x = 0, y = 0} ={}){
+    return [x, y]
+}
+
+// 写法2
+function m2({x, y} = {x: 0, y: 0}){
+    return [x, y]
+}
+```
+
+上面的两种写法都会函数的参数设定了默认值，区别是写法以函数参数的默认值是空对象，但是设置了对象结构赋值的默认值；写法二函数的参数的默认值是一个具有属性的对象，但是没有设置对象解构赋值的默认值
+
+```
+// 函数没有参数的情况
+m1() // [0, 0]
+m2() // [0, 0]
+
+// x 和 y 都有值的情况
+m1({x: 3, y: 8}); //[3,8]
+m2({x: 3, y: 8}); //[3,8]
+
+// x 有值,y 无值的情况
+m1({x: 3}); //[3,0]
+m2({x: 3}); //[3,undefined]
+
+// x 和 y 都无值的情况
+m1({}); //[0,0]
+m2({}); //[undefined,undefined]
+
+m1({z:3}); //[0,0]
+m2({z:3}); //[undefined,undefined]
+```
+
+### 参数默认值的位置
+
+通常情况下，定义了默认值的参数，应该是函数的尾参数。因为这样比较容易看出来，到底省略了哪些参数。如果非尾部的参数设置默认值，实际上这个参数是没法省略的。
+
+```
+// 例子一
+function f(x = 1,y){
+    return [x, y];
+}
+f() // [1, undefined]
+f(2) // [2, undefined]
+f(, 1) // 报错
+f(undefined) // [1, 1]
+
+//例子二
+function f(x, y = 5, z){
+    return [x, y, z]
+}
+f(); // [undefined， 5， undefined]
+f(1); // [1 , 5, undefined]
+f(1, ,2) // 报错
+f(1, undefined, 2) // [1, 5, 2]
+```
+
+上面代码中，有默认值的参数都不是尾参数。这时，无法只省略该参数，而不省略它后面的参数，除非显式输入`undefined`。
+
+如果传入`undefined`，将触发该参数等于默认值，`null`则没有这个效果。
+
+```
+function foo(x = 5, y = 6) {
+  console.log(x, y);
+}
+
+foo(undefined, null)
+// 5 null
+```
+
+上面代码中，`x`参数对应`undefined`，结果触发了默认值，`y`参数等于`null`，就没有触发默认值。
+
+### 函数的 length 属性
+
+指定了默认值以后，函数的`length`属性，将返回没有指定默认值的参数个数。也就是说，指定了默认值后，`length`属性将失真。
+
+```
+(function (a) {}).length // 1
+(function (a = 5) {}).length // 0
+(function (a, b, c = 5) {}).length // 2
+```
+
+上面代码中，`length`属性的返回值，等于函数的参数个数减去指定了默认值的参数个数。比如，上面最后一个函数，定义了 3 个参数，其中有一个参数`c`指定了默认值，因此`length`属性等于`3`减去`1`，最后得到`2`。
+
+`length`属性的含义是，该函数预期传入的参数个数。某个参数指定默认值以后，预期传入的参数个数就不包括这个参数了。
+
+```
+(function(...args) {}).length // 0
+```
+
+如果设置了默认值的参数不是尾参数，那么`length`属性也不再计入后面的参数了。
+
+```
+(function (a = 0, b, c) {}).length // 0
+(function (a, b = 1, c) {}).length // 1
+```
+
+### 作用域
+
+一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）。等到初始化结束，这个作用域就会消失。这种语法行为，在不设置参数默认值时，是不会出现的。
+
+```
+var x = 1;
+function f(x, y = x){
+    console.log(y);
+}
+f(2) // 2
+```
+
+上面代码中，参数`y`的默认值等于变量`x`。调用函数`f`时，参数形成一个单独的作用域。在这个作用域里面，默认变量`x`指向的第一个参数`x`,而不是全局变量`x`，所以输出的是`2`
+
+```
+let x = 1;
+function f( y = x){
+	let x = 2,
+    console.log(y);
+}
+f() // 1
+```
+
+上面代码中，函数`f`调用时，参数`y = x`形成一个单独的作用域。这个作用域里面，变量`x`本身没有定义，所以指向外层的全局变量`x`。函数调用时，函数体内部的局部变量`x`影响不到默认值变量`x`。
+
+如果此时，全局变量`x`不存在，就会报错。
+
+```
+function f(y = x) {
+  let x = 2;
+  console.log(y);
+}
+
+f() // ReferenceError: x is not defined
+```
+
+下面这样写，也会报错。
+
+上面代码中，参数`x = x`形成一个单独作用域。实际执行的是`let x = x`，由于暂时性死区的原因，这行代码会报错”x 未定义“。
+
+如果参数的默认值是一个函数，该函数的作用域也遵守这个规则。请看下面的例子。
+
+```
+let foo = 'outer';
+
+function bar(func = () => foo) {
+  let foo = 'inner';
+  console.log(func());
+}
+
+bar(); // outer
+```
+
+上面代码中，函数`bar`的参数`func`的默认值是一个匿名函数，返回值为变量`foo`。函数参数形成的单独作用域里面，并没有定义变量`foo`，所以`foo`指向外层的全局变量`foo`，因此输出`outer`。
+
+如果写成下面这样，就会报错。
+
+```
+function bar(func = () => foo) {
+  let foo = 'inner';
+  console.log(func());
+}
+
+bar() // ReferenceError: foo is not defined
+```
+
+上面代码中，匿名函数里面的`foo`指向函数外层，但是函数外层并没有声明变量`foo`，所以就报错了。
+
+下面是一个更复杂的例子。
+
+```
+var x = 1;
+function foo(x, y = function() { x = 2; }) {
+  var x = 3;
+  y();
+  console.log(x);
+}
+
+foo() // 3
+x // 1
+```
+
+上面代码中，函数`foo`的参数形成一个单独作用域。这个作用域里面，首先声明了变量`x`，然后声明了变量`y`，`y`的默认值是一个匿名函数。这个匿名函数内部的变量`x`，指向同一个作用域的第一个参数`x`。函数`foo`内部又声明了一个内部变量`x`，该变量与第一个参数`x`由于不是同一个作用域，所以不是同一个变量，因此执行`y`后，内部变量`x`和外部全局变量`x`的值都没变。
+
+如果将`var x = 3`的`var`去除，函数`foo`的内部变量`x`就指向第一个参数`x`，与匿名函数内部的`x`是一致的，所以最后输出的就是`2`，而外层的全局变量`x`依然不受影响。
+
+```
+var x = 1;
+function foo(x, y = function() { x = 2; }) {
+  x = 3;
+  y();
+  console.log(x);
+}
+
+foo() // 2
+x // 1
+```
+
+### 应用
+
+利用参数默认值，可以指定某一个参数不得省略，如果省略就抛出一个错误。
+
+```
+function throwIfMissing() {
+  throw new Error('Missing parameter');
+}
+
+function foo(mustBeProvided = throwIfMissing()) {
+  return mustBeProvided;
+}
+
+foo()
+// Error: Missing parameter
+```
+
+上面代码的`foo`函数，如果调用的时候没有参数，就会调用默认值`throwIfMissing`函数，从而抛出一个错误。
+
+从上面代码还可以看到，参数`mustBeProvided`的默认值等于`throwIfMissing`函数的运行结果（注意函数名`throwIfMissing`之后有一对圆括号），这表明参数的默认值不是在定义时执行，而是在运行时执行。如果参数已经赋值，默认值中的函数就不会运行。
+
+另外，可以将参数默认值设为`undefined`，表明这个参数是可以省略的。
+
+```
+function foo(optional = undefined) { ··· }
+```
+
 ------
 
 ## rest 参数

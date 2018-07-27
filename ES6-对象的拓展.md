@@ -11,3 +11,32 @@
 9. [super 关键字](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-对象的拓展.md#super-关键字)
 10. [Object.keys()，Object.values()，Object.entries()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-对象的拓展.md#objectkeysobjectvaluesobjectentries)
 11. [对象的扩展运算符](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-对象的拓展.md#对象的扩展运算符)
+
+
+
+
+
+## 属性的简洁表示法
+
+## 属性名表达式
+
+## 方法的 name 属性
+
+## Object.is()
+
+## Object.assign()
+
+## 属性的可枚举性和遍历
+
+## Object.getOwnPropertyDescriptors()
+
+## __proto__属性，Object.setPrototypeOf()，Object.getPrototypeOf()
+
+## super 关键字
+
+## Object.keys()，Object.values()，Object.entries()
+
+## 对象的扩展运算符
+
+
+

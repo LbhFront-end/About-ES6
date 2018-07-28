@@ -424,7 +424,134 @@ const obj = Object.assign({}, v1, v2, v3);
 console.log(obj) // {"0": "a", "1":"b", "2":"c"}
 ```
 
+上面代码中，`v1`、`v2`、`v3`分别是字符串、布尔值和数值，结果只有字符串合人目标对象（以字符组的形式），数值和布尔值都会被忽略。这是因为 只有字符串的包装对象，会产生枚举属性
 
+```
+Object(true) // {[[PrimitiveValue]]: true}
+Object(10)  //  {[[PrimitiveValue]]: 10}
+Object('abc') // {0: "a", 1: "b", 2: "c", length: 3, [[PrimitiveValue]]: "abc"}
+```
+
+上面代码中，布尔值、数值、字符串分别转成对应的包装对象，可以看到它们的原始值都在包装对象的内部属性`[[PrimitiveValue]]`上面，这个属性是不会被`Object.assign`拷贝的。只有字符串的包装对象，会产生可枚举的实义属性，那些属性则会被拷贝。
+
+`Object.assign`拷贝的属性是有限制的，只拷贝源对象的自身属性（不拷贝继承属性），也不拷贝不可枚举的属性（`enumerable: false`）。
+
+```
+Object.assign({b: 'c'},
+  Object.defineProperty({}, 'invisible', {
+    enumerable: false,
+    value: 'hello'
+  })
+)
+// { b: 'c' }
+```
+
+上面代码中，`Object.assign`要拷贝的对象只有一个不可枚举属性`invisible`，这个属性并没有被拷贝进去。
+
+属性名为 Symbol 值的属性，也会被`Object.assign`拷贝。
+
+```
+Object.assign({ a: 'b' }, { [Symbol('c')]: 'd' })
+// { a: 'b', Symbol(c): 'd' }
+```
+
+### 注意点
+
+**（1）浅拷贝**
+
+`Object.assign`方法实行的是浅拷贝，而不是深拷贝。也就是说，如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用。
+
+```
+const obj1 = { a: { b: 1}};
+const obj2 = Object.assign({}, obj1);
+
+obj1.a.b = 2;
+obj2.a.b //2
+```
+
+上面代码中，源对象`obj1`的`a`属性的值是一个对象,`Object.assign`拷贝得到的是这个对象的引用。这个对象的任何变化，都会反映搭配目标对象上面
+
+**（2）同名属性的替换**
+
+对于这种嵌套的对象，一旦遇到同名属性，`Object.assign`的处理方法是替换，而不是添加。
+
+```
+const target = { a: { b: 'c', d: 'e'}}
+const source = { a: { b: 'hello' }}
+Object.assign(target, source)
+
+// { a: { b: 'hello' } }
+```
+
+上面代码中，`target`对象的`a`属性被`source`对象的`a`属性整个替换掉了，而不会得到`{ a: { b: 'hello', d: 'e' } }`的结果。这通常不是开发者想要的，需要特别小心。
+
+一些函数库提供`Object.assign`的定制版本（比如 Lodash 的`_.defaultsDeep`方法），可以得到深拷贝的合并。
+
+**（3）数组的处理**
+
+`Object.assign`可以用来处理数组，但是会把数组视为对象。
+
+```
+Object.assign([1, 2, 3], [4, 5])
+// [4, 5, 3]
+```
+
+上面代码中，`Object.assign`把数组视为属性名为 0、1、2 的对象，因此源数组的 0 号属性`4`覆盖了目标数组的 0 号属性`1`。
+
+**（4）取值函数的处理**
+
+`Object.assign`只能进行值的复制，如果要复制的值是一个取值函数，那么将求值后再复制。
+
+```
+const source = {
+  get foo() { return 1 }
+};
+const target = {};
+
+Object.assign(target, source)
+// { foo: 1 }
+```
+
+上面代码中，`source`对象的`foo`属性是一个取值函数，`Object.assign`不会复制这个取值函数，只会拿到值以后，将这个值复制过去。
+
+### 常见用途
+
+`Object.assign`方法有很多用处。
+
+**（1）为对象添加属性**
+
+```
+class Point{
+    constructor(x, y){        
+    	Object.assign(this, {x, y})
+    }
+}
+```
+
+上面方法通过`Object.assign`方法，将`x`属性和`y`属性添加到`Point`类的对象实例
+
+**（2）为对象添加方法**
+
+```
+Object.assign(SomeClass.prototype, {
+  someMethod(arg1, arg2) {
+    ···
+  },
+  anotherMethod() {
+    ···
+  }
+});
+
+// 等同于下面的写法
+SomeClass.prototype.someMethod = function (arg1, arg2) {
+  ···
+};
+SomeClass.prototype.anotherMethod = function () {
+  ···
+};
+```
+
+上面代码使用了对象属性的简洁表示法，直接将两个函数放在大括号中，再使用`assign`方法添加到`SomeClass.prototype`之中。 
 
 ## 属性的可枚举性和遍历
 

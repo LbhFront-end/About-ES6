@@ -1,12 +1,12 @@
 # Symbol
 
-1. [概述](https://github.com/LbhFront-end/About-ES6/blob/master/Symbol.md#概述)
-2. [作为属性名的 Symbol](https://github.com/LbhFront-end/About-ES6/blob/master/Symbol.md#作为属性名的-symbol)
-3. [实例：消除魔术字符串](https://github.com/LbhFront-end/About-ES6/blob/master/Symbol.md#实例消除魔术字符串)
-4. [属性名的遍历](https://github.com/LbhFront-end/About-ES6/blob/master/Symbol.md#属性名的遍历)
-5. [Symbol.for()，Symbol.keyFor()](https://github.com/LbhFront-end/About-ES6/blob/master/Symbol.md#symbolforsymbolkeyfor)
-6. [Symbol.for()，Symbol.keyFor()](https://github.com/LbhFront-end/About-ES6/blob/master/Symbol.md#实例模块的-singleton-模式)
-7. [内置的 Symbol 值](https://github.com/LbhFront-end/About-ES6/blob/master/Symbol.md#内置的-symbol-值)
+1. [概述](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Symbol.md#概述)
+2. [作为属性名的 Symbol](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Symbol.md#作为属性名的-symbol)
+3. [实例：消除魔术字符串](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Symbol.md#实例消除魔术字符串)
+4. [属性名的遍历](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Symbol.md#属性名的遍历)
+5. [Symbol.for()，Symbol.keyFor()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Symbol.md#symbolforsymbolkeyfor)
+6. [Symbol.for()，Symbol.keyFor()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Symbol.md#实例模块的-singleton-模式)
+7. [内置的 Symbol 值](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Symbol.md#内置的-symbol-值)
 
 ## 概述
 

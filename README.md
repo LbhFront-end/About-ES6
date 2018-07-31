@@ -12,3 +12,4 @@
 8. [ES6-数组的扩展](./ES6-数组的拓展.md)
 9. [ES6-对象的扩展](./ES6-对象的拓展.md)
 10. [ES6-Symbol](./ES6-Symbol.md)
+11. [ES6-Set和Map数据结构](./ES6-Set和Map数据结构.md)

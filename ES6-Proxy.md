@@ -1,10 +1,10 @@
 # Proxy
 
-1. [概述](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Set和Map数据结构.md#概述)
-2. [Proxy 实例的方法](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Set和Map数据结构.md#proxy-实例的方法)
-3. [Proxy.revocable()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Set和Map数据结构.md#proxyrevocable)
-4. [this 问题](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Set和Map数据结构.md#this-问题)
-5. [实例：Web 服务的客户端](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Set和Map数据结构.md#实例web-服务的客户端)
+1. [概述](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Proxy.md#概述)
+2. [Proxy 实例的方法](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Proxy.md#proxy-实例的方法)
+3. [Proxy.revocable()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Proxy.md#proxyrevocable)
+4. [this 问题](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Proxy.md#this-问题)
+5. [实例：Web 服务的客户端](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Proxy.md#实例web-服务的客户端)
 
 
 

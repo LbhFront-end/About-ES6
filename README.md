@@ -15,3 +15,4 @@
 11. [ES6-Set和Map数据结构](./ES6-Set和Map数据结构.md)
 12. [ES6-Proxy](./ES6-Proxy.md)
 13. [ES6-Reflect](./ES6-Reflect.md)
+14. [ES6-Promise对象](./ES6-Promise对象.md)

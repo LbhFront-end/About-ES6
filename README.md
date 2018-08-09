@@ -16,3 +16,4 @@
 12. [ES6-Proxy](./ES6-Proxy.md)
 13. [ES6-Reflect](./ES6-Reflect.md)
 14. [ES6-Promise对象](./ES6-Promise对象.md)
+15. [ES6-Iterator和for-of循环](./ES6-Iterator和for-of循环.md)

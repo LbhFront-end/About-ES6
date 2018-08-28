@@ -22,7 +22,7 @@ ES6 是一个历史名词，也是一个泛指，含义是 5.1 版本以后的 J
 
 Node 是 JavaScript 的服务器运行环境 （runtime）。它对 ES6 的支持度更高，除了那些默认打开的功能，还有一些语法功能已经实现了，但是默认没有打开。使用以下命令，可以看 Node 已经实现的 ES6 的特征
 
-```
+```cmd
 $ node --v8-options | grep harmony
 ```
 
@@ -32,7 +32,7 @@ $ node --v8-options | grep harmony
 
 Babel 是一个广泛使用的 ES6 转码器，可以将 ES6 代码转为 ES5 代码，从而在现有的环境执行
 
-```
+```javascript
 // 转码前
 input.map(item => item +1);
 
@@ -46,7 +46,7 @@ input.map(function(item){
 
 Babel 的配置文件是 `.babelrc` ，存放在项目的根目录下
 
-```
+```javascript
 {
     "presets" : [],
     "plugins" : []
@@ -55,7 +55,7 @@ Babel 的配置文件是 `.babelrc` ，存放在项目的根目录下
 
 `persets` 字段设定转码规则，可以根据官方的规则按需下载
 
-```
+```cmd
  # 最新转码规则
  $ npm i -S -D babel-preset-latest
  
@@ -71,7 +71,7 @@ Babel 的配置文件是 `.babelrc` ，存放在项目的根目录下
 
 然后，将规则加入到 `.babelrc` 
 
-```
+```javascript
 {
     "presets" : [
         "lastest",
@@ -86,13 +86,13 @@ Babel 的配置文件是 `.babelrc` ，存放在项目的根目录下
 
 Babel 提供 `babel-cli` 工具，用于命令行的转码
 
-```
+```cmd
  $ npm i -g babel-cli
 ```
 
 基本用法
 
-```
+```cmd
 # 转码结果输出到标准输出
 $ babel example.js
 
@@ -116,14 +116,14 @@ $ babel src -d lib -s
 
 一个解决办法是将`babel-cli`安装在项目之中。 
 
-```
+```cmd
 # 安装
 $ npm install --save-dev babel-cli
 ```
 
 然后，改写`package.json`。
 
-```
+```javascript
 {
   // ...
   "devDependencies": {
@@ -137,7 +137,7 @@ $ npm install --save-dev babel-cli
 
 转码的时候，就执行下面的命令。
 
-```
+```cmd
 $ npm run build
 ```
 
@@ -147,7 +147,7 @@ $ npm run build
 
 它不用单独安装，而是随`babel-cli`一起安装。然后，执行`babel-node`就进入 REPL 环境。
 
-```
+```cmd
 $ babel-node
 > (x => x * 2)(1)
 2
@@ -155,20 +155,20 @@ $ babel-node
 
 `babel-node`命令可以直接运行 ES6 脚本。将上面的代码放入脚本文件`es6.js`，然后直接运行。
 
-```
+```cmd
 $ babel-node es6.js
 2
 ```
 
 `babel-node`也可以安装在项目中。
 
-```
+```cmd
 $ npm install --save-dev babel-cli
 ```
 
 然后，改写`package.json`。
 
-```
+```javascript
 {
   "scripts": {
     "script-name": "babel-node script.js"
@@ -182,13 +182,13 @@ $ npm install --save-dev babel-cli
 
 `babel-register`模块改写`require`命令，为它加上一个钩子。此后，每当使用`require`加载`.js`、`.jsx`、`.es`和`.es6`后缀名的文件，就会先用 Babel 进行转码。
 
-```
+```cmd
 $ npm install --save-dev babel-register
 ```
 
 使用时，必须首先加载`babel-register`。
 
-```
+```javascript
 require("babel-register");
 require("./index.js");
 ```
@@ -203,13 +203,13 @@ require("./index.js");
 
 安装命令如下。
 
-```
+```cmd
 $ npm install babel-core --save
 ```
 
 然后，在项目中就可以调用`babel-core`。
 
-```
+```javascript
 var babel = require('babel-core');
 
 // 字符串转码
@@ -234,7 +234,7 @@ babel.transformFromAst(ast, code, options);
 
 下面是一个例子。
 
-```
+```javascript
 var es6Code = 'let x = n => n + 1';
 var es5Code = require('babel-core')
   .transform(es6Code, {
@@ -254,13 +254,13 @@ Babel 默认只转换新的 JavaScript 句法（syntax），而不转换新的 A
 
 安装命令如下。
 
-```
+```cmd
 $ npm install --save babel-polyfill
 ```
 
 然后，在脚本头部，加入如下一行代码。
 
-```
+```javascript
 import 'babel-polyfill';
 // 或者
 require('babel-polyfill');
@@ -272,7 +272,7 @@ Babel 默认不转码的 API 非常多，详细清单可以查看`babel-plugin-t
 
 Babel 也可以用于浏览器环境。但是，从 Babel 6.0 开始，不再直接提供浏览器版本，而是要用构建工具构建出来。如果你没有或不想使用构建工具，可以使用[babel-standalone](https://github.com/Daniel15/babel-standalone)模块提供的浏览器版本，将其插入网页。
 
-```
+```javascript
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.4.4/babel.min.js"></script>
 <script type="text/babel">
 // Your ES6 code
@@ -283,13 +283,13 @@ Babel 也可以用于浏览器环境。但是，从 Babel 6.0 开始，不再直
 
 下面是如何将代码打包成浏览器可以使用的脚本，以`Babel`配合`Browserify`为例。首先，安装`babelify`模块。
 
-```
+```cmd
 $ npm install --save-dev babelify babel-preset-latest
 ```
 
 然后，再用命令行转换 ES6 脚本。
 
-```
+```cmd
 $  browserify script.js -o bundle.js \
   -t [ babelify --presets [ latest ] ]
 ```
@@ -298,7 +298,7 @@ $  browserify script.js -o bundle.js \
 
 在`package.json`设置下面的代码，就不用每次命令行都输入参数了。
 
-```
+```javascript
 {
   "browserify": {
     "transform": [["babelify", { "presets": ["latest"] }]]

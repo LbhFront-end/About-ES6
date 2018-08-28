@@ -32,7 +32,7 @@ Iterator的遍历过程是这样的
 
 下面是一个模拟`next`方法返回值的例子
 
-```
+```javascript
 var it = makeIterator(['a', 'b']);
 
 it.next(); // { value:"a", done:false }
@@ -61,7 +61,7 @@ function makeIterator(array){
 
 对于遍历器对象来说，`done: false`和`value: undefined`属性都是可以省略的，因此上面的`makeIterator`函数可以简写成下面的形式。
 
-```
+```javascript
 function makeIterator(array){
     var nextIndex = 0;
     return {
@@ -76,7 +76,7 @@ function makeIterator(array){
 
 由于Iterator只是把接口规格加到数据结构上，所以，遍历器与它所遍历的那个数据结构，实际上是分开的，完全可以写出没有对应数据结构的遍历器对象，或者说用遍历器对象模拟出数据结构，下面是一个无限运行的遍历器对象的例子
 
-```
+```javascript
 var it idMaker();
 it.next().value // 0
 it.next().value // 1
@@ -97,7 +97,7 @@ function idMaker(){
 
 如果使用TypsScript的写法，遍历器接口（Iterable）、指针对象（Iterator）和`next`方法返回值的规格可以描述如下
 
-```
+```javascript
 interface Iterable  {
     [Symbol.iterator](): Iterator,
 }
@@ -124,7 +124,7 @@ Iterator 接口的目的，就是为所有数据结构，提供了一种统一�
 
 ES6 规定，默认的 Iterator 接口部署在数据结构的`Symbol.iterator`属性，或者说，一个数据结构只要具有`Symbol.iterator`属性，就可以认为是“可遍历的”（iterable）。`Symbol.iterator`属性本身是一个函数，就是当前数据结构默认的遍历器生成函数。执行这个函数，就会返回一个遍历器。至于属性名`Symbol.iterator`，它是一个表达式，返回`Symbol`对象的`iterator`属性，这是一个预定义好的、类型为 Symbol 的特殊值，所以要放在方括号内 
 
-```
+```javascript
 const obj = {
   [Symbol.iterator] : function () {
     return {
@@ -155,7 +155,7 @@ ES6 的有些数据结构原生具备 Iterator 接口（比如数组），即不
 
 下面的例子是数组的`Symbol.iterator`属性。
 
-```
+```javascript
 let arr = ['a', 'b', 'c'];
 let iter = arr[Symbol.iterator]();
 
@@ -173,7 +173,7 @@ iter.next() // { value: undefined, done: true }
 
 一个对象如果要具备可被`for...of`循环调用的 Iterator 接口，就必须在`Symbol.iterator`的属性上部署遍历器生成方法（原型链上的对象具有该方法也可）。 
 
-```
+```javascript
 class RangeIterator {
     constructor(start, stop){
         this.value = start;
@@ -202,7 +202,7 @@ for(var value of range(0, 3)){
 
 下面是通过遍历器实现指针结构的例子。
 
-```
+```javascript
 function Obj(value){
     this.value = value;
     this.next = null;
@@ -237,7 +237,7 @@ for (var i of one){
 
 下面是另一个为对象添加 Iterator 接口的例子。
 
-```
+```javascript
 let obj = {
   data: [ 'hello', 'world' ],
   [Symbol.iterator]() {
@@ -261,7 +261,7 @@ let obj = {
 
 对于类似数组的对象（存在数值键名和`length`属性），部署 Iterator 接口，有一个简便方法，就是`Symbol.iterator`方法直接引用数组的 Iterator 接口。
 
-```
+```javascript
 NodeList.prototype[Symbol.iterator] = Array.prototype[Symbol.iterator];
 // 或者
 NodeList.prototype[Symbol.iterator] = [][Symbol.iterator];
@@ -273,7 +273,7 @@ NodeList 对象是类似数组的对象，本来就具有遍历接口，可以�
 
 下面是另一个类似数组的对象调用数组的`Symbol.iterator`方法的例子。
 
-```
+```javascript
 let iterable = {
   0: 'a',
   1: 'b',
@@ -288,7 +288,7 @@ for (let item of iterable) {
 
 注意，普通对象部署数组的`Symbol.iterator`方法，并无效果。
 
-```
+```javascript
 let iterable = {
   a: 'a',
   b: 'b',
@@ -303,7 +303,7 @@ for (let item of iterable) {
 
 如果`Symbol.iterator`方法对应的不是遍历器生成函数（即会返回一个遍历器对象），解释引擎将会报错。
 
-```
+```javascript
 var obj = {};
 
 obj[Symbol.iterator] = () => 1;
@@ -315,7 +315,7 @@ obj[Symbol.iterator] = () => 1;
 
 有了遍历器接口，数据结构就可以用`for...of`循环遍历（详见下文），也可以使用`while`循环遍历。
 
-```
+```javascript
 var $iterator = ITERABLE[Symbol.iterator]();
 var $result = $iterator.next();
 while (!$result.done) {
@@ -337,7 +337,7 @@ while (!$result.done) {
 
 对数组和Set结构进行解构赋值时，会默认调用 `Symbol.iterator`方法
 
-```
+```javascript
 let set = new Set().add('a').add('b').add('c');
 let [x, y] = set;
 // x ='a'; y ='b'
@@ -350,7 +350,7 @@ let [first, ...rest] = set;
 
 扩展运算符（...）也会调用默认的 Iterator 接口。
 
-```
+```javascript
 // 例一
 var str = 'hello';
 [...str] //  ['h','e','l','l','o']
@@ -365,7 +365,7 @@ let arr = ['b', 'c'];
 
 实际上，这提供了一种简便机制，可以将任何部署了 Iterator 接口的数据结构，转为数组。也就是说，只要某个数据结构部署了 Iterator 接口，就可以对它使用扩展运算符，将其转为数组。
 
-```
+```javascript
 let arr = [...iterable];
 ```
 
@@ -373,7 +373,7 @@ let arr = [...iterable];
 
 `yield*`后面跟的是一个可遍历的结构，它会调用该结构的遍历器接口。
 
-```
+```javascript
 let generator = function* () {
   yield 1;
   yield* [2,3,4];
@@ -406,7 +406,7 @@ iterator.next() // { value: undefined, done: true }
 
 字符串是一个类似数组的对象，也原生具有 Iterator 接口。
 
-```
+```javascript
 var someString = "hi";
 typeof someString[Symbol.iterator]
 // "function"
@@ -422,7 +422,7 @@ iterator.next()  // { value: undefined, done: true }
 
 可以覆盖原生的`Symbol.iterator`方法，达到修改遍历器行为的目的。
 
-```
+```javascript
 var str = new String("hi");
 
 [...str] // ["h", "i"]
@@ -453,7 +453,7 @@ str // "hi"
 
 `Symbol.iterator`方法的最简单实现，还是使用下一章要介绍的 Generator 函数。
 
-```
+```javascript
 let myIterable = {
   [Symbol.iterator]: function* () {
     yield 1;
@@ -491,7 +491,7 @@ for (let x of obj) {
 
 `return`方法的使用场合是，如果`for...of`循环提前退出（通常是因为出错，或者有`break`语句），就会调用`return`方法。如果一个对象在完成遍历前，需要清理或释放资源，就可以部署`return`方法。
 
-```
+```javascript
 function readLinesSync(file) {
   return {
     [Symbol.iterator]() {
@@ -511,7 +511,7 @@ function readLinesSync(file) {
 
 上面代码中，函数`readLinesSync`接受一个文件对象作为参数，返回一个遍历器对象，其中除了`next`方法，还部署了`return`方法。下面的两种情况，都会触发执行`return`方法。
 
-```
+```javascript
 // 情况一
 for (let line of readLinesSync(fileName)) {
   console.log(line);
@@ -535,7 +535,7 @@ for (let line of readLinesSync(fileName)) {
 
 一个数组，然后遍历这个数组。
 
-```
+```javascript
 for (var key of Object.keys(someObject)) {
   console.log(key + ': ' + someObject[key]);
 }
@@ -543,7 +543,7 @@ for (var key of Object.keys(someObject)) {
 
 另一个方法是使用 Generator 函数将对象重新包装一下。
 
-```
+```javascript
 function* entries(obj) {
   for (let key of Object.keys(obj)) {
     yield [key, obj[key]];
@@ -562,7 +562,7 @@ for (let [key, value] of entries(obj)) {
 
 以数组为例，JavaScript 提供多种遍历语法。最原始的写法就是`for`循环。
 
-```
+```javascript
 for (var index = 0; index < myArray.length; index++) {
   console.log(myArray[index]);
 }
@@ -570,7 +570,7 @@ for (var index = 0; index < myArray.length; index++) {
 
 这种写法比较麻烦，因此数组提供内置的`forEach`方法。
 
-```
+```javascript
 myArray.forEach(function (value) {
   console.log(value);
 });
@@ -580,7 +580,7 @@ myArray.forEach(function (value) {
 
 `for...in`循环可以遍历数组的键名。
 
-```
+```javascript
 for (var index in myArray) {
   console.log(myArray[index]);
 }
@@ -596,7 +596,7 @@ for (var index in myArray) {
 
 `for...of`循环相比上面几种做法，有一些显著的优点。
 
-```
+```javascript
 for (let value of myArray) {
   console.log(value);
 }
@@ -608,7 +608,7 @@ for (let value of myArray) {
 
 下面是一个使用 break 语句，跳出`for...of`循环的例子。
 
-```
+```javascript
 for (var n of fibonacci) {
   if (n > 1000)
     break;

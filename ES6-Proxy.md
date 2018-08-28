@@ -14,7 +14,7 @@ Proxy 用于修改某些操作的默认行为，等同于在语言层面做出�
 
 Proxy可以理解成，在目标对象之前假设一层“拦截”，对外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。Proxy 这个词的愿意是代理，用在这里是表示由它“代理”某些操作，可以译为“代理器”
 
-```
+```javascript
 var obj = new Proxy({},{
     get: function(target, key, receiver){
         console.log(`getting ${key}!`);
@@ -29,7 +29,7 @@ var obj = new Proxy({},{
 
 上面代码对一个空对象假设了一层拦截，重定义了属性的读取（`get`）和设置（`set`）行为。对设置了拦截行为的对象`obj`，去读写它的属性，就会得到下面的结果
 
-```
+```javascript
 obj.count = 1
 // setting count!
 ++obj.count
@@ -42,7 +42,7 @@ Proxy实际上重载了(overload)了点运算符，即用自己的定义覆盖�
 
 ES6 原生提供Proxy构造函数，用来生成Proxy实例
 
-```
+```javascript
 var proxy = new Proxy(traget, handler);
 ```
 
@@ -50,7 +50,7 @@ Proxy 对象的所有用法，都是上面这种形式，不同的是只是 `han
 
 另外一个例子
 
-```
+```javascript
 var proxy = new Proxy({},{
     get: function(target, property){
         return 35;
@@ -68,7 +68,7 @@ proxy.title // 35
 
 如果`handler`没有设置任何拦截，那就等同于通向原对象
 
-```
+```javascript
 var target = {};
 var handle = {};
 var proxy = new Proxy(target, handler);
@@ -80,13 +80,13 @@ target.a // 'b'
 
 一个技巧是将`Proxy`对象，设置到 `object.proxy`属性，从而可以在 `object`对象上调用
 
-```
+```javascript
 var object = { proxy: new Proxy(target, handle )};
 ```
 
 Proxy 实例也可以作为其他对象的原型对象
 
-```
+```javascript
 var proxy = new Proxy({},{
 	get: function(target, property){
         return 35;
@@ -100,7 +100,7 @@ obj.time // 35
 
 同一个拦截器函数，可以设置拦截多个操作
 
-```
+```javascript
 var handler = {
     get: function(target, name){
         if(name === 'prototype'){
@@ -150,7 +150,7 @@ fproxy.foo === "Hello, foo" // true
 
 `get`方法的用法，上文已经有一个例子，下面是另一个拦截读取操作的例子。
 
-```
+```javascript
 var person = {
     name:"张三"
 };
@@ -172,7 +172,7 @@ proxy.age // 抛出一个错误
 
 下面的例子使用`get`拦截，实现数组读取负数的索引
 
-```
+```javascript
 function createArray(...elements){
     let handler = {
         get(target, propKey, receiver){
@@ -196,7 +196,7 @@ arr[-1] // c
 
 利用Proxy，可以将读取属性的操作（`get`），转变为执行某个函数，从而实现属性的链式操作
 
-```
+```javascript
 var pipe = (function(){
     return function(value){
         var funcStack = [];
@@ -227,7 +227,7 @@ pipe(3).double.pow.reverseInt.get; // 63
 
 下面的例子则是利用`get`拦截，实现一个生成各种 DOM 节点的通用函数`dom`。
 
-```
+```javascript
 const dom = new Proxy({},{
     get(target, property){
         return function(attrs = {},...children){
@@ -262,7 +262,7 @@ document.body.appendChild(el);
 
 下面是一个`get`方法的第三个参数的例子，它总是指向原始的读操作所在的那个对象，一般情况下就是 Proxy 实例。 
 
-```
+```javascript
 const proxy = new Proxy({},{
     get: function(target, property, receiver){
         return receiver;
@@ -273,7 +273,7 @@ proxy.getReceiver === proxy // true
 
 上面代码中，`proxy`对象的`getReceiver`属性是由`proxy`对象提供的，所以`receiver`指向`proxy`对象。
 
-```
+```javascript
 const proxy = new Proxy({}, {
   get: function(target, property, receiver) {
     return receiver;
@@ -288,7 +288,7 @@ d.a === d // true
 
 如果一个属性不可配置（configurable）且不可写（writable），则 Proxy 不能修改该属性，否则通过 Proxy 对象访问该属性会报错。
 
-```
+```javascript
 const target = Object.defineProperties({},{
     foo: {
         value: 123,
@@ -313,7 +313,7 @@ proxy.foo
 
 假定`Person`对象有一个`age`属性，该属性应该是一个不大于 200 的整数，那么可以使用`Proxy`保证`age`的属性值符合要求。
 
-```
+```javascript
 let validator = {
     set: function(obj, prop, value){
         if(prop === 'age'){
@@ -341,7 +341,7 @@ person.age = 300 // 报错
 
 有时，我们会在对象上面设置内部属性，属性名的第一个字符使用下划线开头，表示这些属性不应该被外部使用。结合`get`和`set`方法，就可以做到防止这些内部属性被外部读写。
 
-```
+```javascript
 const handler = {
     get(target, key){
         invariant(key, 'get');
@@ -370,7 +370,7 @@ proxy._prop = 'c'
 
 下面是`set`方法第四个参数的例子。
 
- ```
+ ```javascript
 const handler = {
     set: function(obj, prop, value, receiver){
         obj[prop] = receiver;
@@ -383,7 +383,7 @@ proxy.foo === proxy // true
 
 上面代码中，`set`方法的第四个参数`receiver`，指的是原始的操作行为所在的那个对象，一般情况下是`proxy`实例本身，请看下面的例子。 
 
-```
+```javascript
 const handler = {
     set: function(obj, prop, value, receiver){
         obj[prop] = receiver;
@@ -400,7 +400,7 @@ myObj.foo === myObj // true
 
 注意，如果目标对象自身的某个属性，不可写且不可配置，那么`set`方法将不起作用。
 
-```
+```javascript
 const obj = {};
 Object.defineProperty(obj, 'foo', {
     value: 'bar',
@@ -423,7 +423,7 @@ proxy.foo //'bar'
 
 `apply`方法可以接受三个参数，分别是目标对象、目标对象的上下文对象（`this`）和目标对象的参数数组。
 
-```
+```javascript
 var handler = {
     apply(target, ctx, args){
         return Reflect.apply(...arguments);
@@ -433,7 +433,7 @@ var handler = {
 
 下面是一个例子
 
-```
+```javascript
 var target = function() { return 'I am the target ';};
 var handler = {
     apply: function(){
@@ -450,7 +450,7 @@ p()
 
 下面是另外一个例子。
 
-```
+```javascript
 var twice = {
     apply(target, ctx, args){
         return Reflect.apply(...arguments) *2;
@@ -469,7 +469,7 @@ proxy.call(null, [7, 8]) //30
 
 另外，直接调用`Reflect.apply`方法，也会被拦截。
 
-```
+```javascript
 Reflect.apply(proxy, null, [9, 10]) // 38
 ```
 
@@ -481,7 +481,7 @@ Reflect.apply(proxy, null, [9, 10]) // 38
 
 下面的例子使用`has`方法隐藏某些属性，不被`in`运算符发现。
 
-```
+```javascript
 var handler = {
     has(target, key){
         if(key[0] === '_'){
@@ -499,7 +499,7 @@ var proxy = new Proxy(target, handler);
 
 如果原对象不可配置或者禁止扩展，这时`has`拦截会报错。
 
-```
+```javascript
 var obj = { a: 10};
 Object.preventExtensions(obj);
 var p = new Proxy(obj, {
@@ -516,7 +516,7 @@ var p = new Proxy(obj, {
 
 另外，虽然`for...in`循环也用到了`in`运算符，但是`has`拦截对`for...in`循环不生效。
 
-```
+```javascript
 let stu1 = {name: '张三', score: 59};
 let stu2 = {name: '李四', score: 99};
 
@@ -559,7 +559,7 @@ for (let b in oproxy2) {
 
 `construct`方法用于拦截`new`命令，下面是拦截对象的写法。
 
-```
+```javascript
 var handler = {
     construct(target, args, newtarget){
         return new target(...args);
@@ -573,7 +573,7 @@ var handler = {
 - `args`：构造函数的参数对象
 - `newTarget`：创造实例对象时，`new`命令作用的构造函数（下面例子的`p`）
 
-```
+```javascript
 var p = new Proxy(function(){},{
     construct: function(target, args){
         console.log('called:' +args.join(','));
@@ -589,7 +589,7 @@ var p = new Proxy(function(){},{
 
 `deleteProperty`方法用于拦截`delete`操作，如果这个方法抛出错误或者返回`false`，当前属性就无法被`delete`命令删除。
 
-```
+```javascript
 var handler = {
   deleteProperty (target, key) {
     invariant(key, 'delete');
@@ -616,7 +616,7 @@ delete proxy._prop
 
 `defineProperty`方法拦截了`Object.defineProperty`操作。
 
-```
+```javascript
 var handler = {
   defineProperty (target, key, descriptor) {
     return false;
@@ -635,7 +635,7 @@ proxy.foo = 'bar' // 不会生效
 
 `getOwnPropertyDescriptor`方法拦截`Object.getOwnPropertyDescriptor()`，返回一个属性描述对象或者`undefined`。
 
-```
+```javascript
 var handler = {
   getOwnPropertyDescriptor (target, key) {
     if (key[0] === '_') {
@@ -668,7 +668,7 @@ Object.getOwnPropertyDescriptor(proxy, 'baz')
 
 下面是一个例子。
 
-```
+```javascript
 var proto = {};
 var p = new Proxy({}, {
   getPrototypeOf(target) {
@@ -686,7 +686,7 @@ Object.getPrototypeOf(p) === proto // true
 
 `isExtensible`方法拦截`Object.isExtensible`操作。
 
-```
+```javascript
 var p = new Proxy({}, {
   isExtensible: function(target) {
     console.log("called");
@@ -705,13 +705,13 @@ Object.isExtensible(p)
 
 这个方法有一个强限制，它的返回值必须与目标对象的`isExtensible`属性保持一致，否则就会抛出错误。
 
-```
+```javascript
 Object.isExtensible(proxy) === Object.isExtensible(target)
 ```
 
 下面是一个例子。
 
-```
+```javascript
 var p = new Proxy({}, {
   isExtensible: function(target) {
     return false;
@@ -732,7 +732,7 @@ Object.isExtensible(p) // 报错
 
 下面是拦截`Object.keys()`的例子。
 
-```
+```javascript
 let target = {
   a: 1,
   b: 2,
@@ -755,7 +755,7 @@ Object.keys(proxy)
 
 下面的例子是拦截第一个字符为下划线的属性名。
 
-```
+```javascript
 let target = {
   _bar: 'foo',
   _prop: 'bar',
@@ -781,7 +781,7 @@ for (let key of Object.keys(proxy)) {
 - 属性名为 Symbol 值
 - 不可遍历（`enumerable`）的属性
 
-```
+```javascript
 let target = {
   a: 1,
   b: 2,
@@ -812,7 +812,7 @@ Object.keys(proxy)
 
 `ownKeys`方法还可以拦截`Object.getOwnPropertyNames()`。
 
-```
+```javascript
 var p = new Proxy({}, {
   ownKeys: function(target) {
     return ['a', 'b', 'c'];
@@ -825,7 +825,7 @@ Object.getOwnPropertyNames(p)
 
 `for...in`循环也受到`ownKeys`方法的拦截。
 
-```
+```javascript
 const obj = { hello: 'world' };
 const proxy = new Proxy(obj, {
   ownKeys: function () {
@@ -842,7 +842,7 @@ for (let key in proxy) {
 
 `ownKeys`方法返回的数组成员，只能是字符串或 Symbol 值。如果有其他类型的值，或者返回的根本不是数组，就会报错。
 
-```
+```javascript
 var obj = {};
 
 var p = new Proxy(obj, {
@@ -859,7 +859,7 @@ Object.getOwnPropertyNames(p)
 
 如果目标对象自身包含不可配置的属性，则该属性必须被`ownKeys`方法返回，否则报错。
 
-```
+```javascript
 var obj = {};
 Object.defineProperty(obj, 'a', {
   configurable: false,
@@ -881,7 +881,7 @@ Object.getOwnPropertyNames(p)
 
 另外，如果目标对象是不可扩展的（non-extensition），这时`ownKeys`方法返回的数组之中，必须包含原对象的所有属性，且不能包含多余的属性，否则报错。
 
-```
+```javascript
 var obj = {
   a: 1
 };
@@ -906,7 +906,7 @@ Object.getOwnPropertyNames(p)
 
 这个方法有一个限制，只有目标对象不可扩展时（即`Object.isExtensible(proxy)`为`false`），`proxy.preventExtensions`才能返回`true`，否则会报错。
 
-```
+```javascript
 var p = new Proxy({}, {
   preventExtensions: function(target) {
     return true;
@@ -920,7 +920,7 @@ Object.preventExtensions(p) // 报错
 
 为了防止出现这个问题，通常要在`proxy.preventExtensions`方法里面，调用一次`Object.preventExtensions`。
 
-```
+```javascript
 var p = new Proxy({}, {
   preventExtensions: function(target) {
     console.log('called');
@@ -940,7 +940,7 @@ Object.preventExtensions(p)
 
 下面是一个例子。
 
-```
+```javascript
 var handler = {
   setPrototypeOf (target, proto) {
     throw new Error('Changing the prototype is forbidden');
@@ -963,7 +963,7 @@ Object.setPrototypeOf(proxy, proto);
 
 `Proxy.revocable`方法返回一个可取消的 Proxy 实例。
 
-```
+```javascript
 let target = {};
 let handler = {};
 
@@ -986,7 +986,7 @@ proxy.foo // TypeError: Revoked
 
 虽然 Proxy 可以代理针对目标对象的访问，但它不是目标对象的透明代理，即不做任何拦截的情况下，也无法保证与目标对象的行为一致。主要原因就是在 Proxy 代理的情况下，目标对象内部的`this`关键字会指向 Proxy 代理。
 
-```
+```javascript
 const target = {
   m: function () {
     console.log(this === proxy);
@@ -1004,7 +1004,7 @@ proxy.m()  // true
 
 下面是一个例子，由于`this`指向的变化，导致 Proxy 无法代理目标对象。
 
-```
+```javascript
 const _name = new WeakMap();
 
 class Person {
@@ -1027,7 +1027,7 @@ proxy.name // undefined
 
 此外，有些原生对象的内部属性，只有通过正确的`this`才能拿到，所以 Proxy 也无法代理这些原生对象的属性。
 
-```
+```javascript
 const target = new Date();
 const handler = {};
 const proxy = new Proxy(target, handler);
@@ -1038,7 +1038,7 @@ proxy.getDate();
 
 上面代码中，`getDate`方法只能在`Date`对象实例上面拿到，如果`this`不是`Date`对象实例就会报错。这时，`this`绑定原始对象，就可以解决这个问题。
 
-```
+```javascript
 const target = new Date('2015-01-01');
 const handler = {
   get(target, prop) {
@@ -1061,7 +1061,7 @@ proxy.getDate() // 1
 
 Proxy 对象可以拦截目标对象的任意属性，这使得它很合适用来写 Web 服务的客户端。
 
-```
+```javascript
 const service = createWebService('http://example.com/data');
 
 service.employees().then(json => {
@@ -1072,7 +1072,7 @@ service.employees().then(json => {
 
 上面代码新建了一个 Web 服务的接口，这个接口返回各种数据。Proxy 可以拦截这个对象的任意属性，所以不用为每一种数据写一个适配方法，只要写一个 Proxy 拦截就可以了。
 
-```
+```javascript
 function createWebService(baseUrl) {
   return new Proxy({}, {
     get(target, propKey, receiver) {

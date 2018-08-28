@@ -20,7 +20,7 @@
 
 ES6 允许直接写入变量和函数，作为对象的属性和方法。这样的书写更加简洁。
 
-```
+```javascript
 const foo = 'bar';
 const baz = {foo};
 baz // {foo: "bar"}
@@ -31,7 +31,7 @@ const baz = {foo: foo};
 
 上面代码表明，ES6 允许在对象之中，直接写变量。这时，属性名为变量名, 属性值为变量的值。下面是另一个例子。
 
-```
+```javascript
 function f(x, y) {
   return {x, y};
 }
@@ -47,7 +47,7 @@ f(1, 2) // Object {x: 1, y: 2}
 
 除了属性简写，方法也可以简写。
 
-```
+```javascript
 const o = {
   method() {
     return "Hello!";
@@ -65,7 +65,7 @@ const o = {
 
 下面是一个实际的例子。
 
-```
+```javascript
 let birth = '2000/01/01';
 
 const Person = {
@@ -83,7 +83,7 @@ const Person = {
 
 这种写法用于函数的返回值，将会非常方便。
 
-```
+```javascript
 function getPoint() {
   const x = 1;
   const y = 10;
@@ -96,7 +96,7 @@ getPoint()
 
 CommonJS 模块输出一组变量，就非常合适使用简洁写法。
 
-```
+```javascript
 let ms = {};
 
 function getItem (key) {
@@ -122,7 +122,7 @@ module.exports = {
 
 属性的赋值器（setter）和取值器（getter），事实上也是采用这种写法。
 
-```
+```javascript
 const cart = {
   _wheels: 4,
 
@@ -141,7 +141,7 @@ const cart = {
 
 注意，简洁写法的属性名总是字符串，这会导致一些看上去比较奇怪的结果。
 
-```
+```javascript
 const obj = {
   class () {}
 };
@@ -157,7 +157,7 @@ var obj = {
 
 如果某个方法的值是一个 Generator 函数，前面需要加上星号。
 
-```
+```javascript
 const obj = {
   * m() {
     yield 'hello world';
@@ -169,7 +169,7 @@ const obj = {
 
 JavaScript 定义对象的属性，有两种方法。
 
-```
+```javascript
 // 方法一
 obj.foo = true;
 
@@ -181,7 +181,7 @@ obj['a' + 'bc'] = 123;
 
 但是，如果使用字面量方式定义对象（使用大括号），在 ES5 中只能使用方法一（标识符）定义属性。
 
-```
+```javascript
 var obj = {
   foo: true,
   abc: 123
@@ -190,7 +190,7 @@ var obj = {
 
 ES6 允许字面量定义对象时，用方法二（表达式）作为对象的属性名，即把表达式放在方括号内。
 
-```
+```javascript
 let propKey = 'foo';
 
 let obj = {
@@ -201,7 +201,7 @@ let obj = {
 
 下面是另一个例子。
 
-```
+```javascript
 let lastWord = 'last word';
 
 const a = {
@@ -216,7 +216,7 @@ a['last word'] // "world"
 
 表达式还可以用于定义方法名。
 
-```
+```javascript
 let obj = {
   ['h' + 'ello']() {
     return 'hi';
@@ -228,7 +228,7 @@ obj.hello() // hi
 
 注意，属性名表达式与简洁表示法，不能同时使用，会报错。
 
-```
+```javascript
 // 报错
 const foo = 'bar';
 const bar = 'abc';
@@ -241,7 +241,7 @@ const baz = { [foo]: 'abc'};
 
 注意，属性名表达式如果是一个对象，默认情况下会自动将对象转为字符串`[object Object]`，这一点要特别小心。
 
-```
+```javascript
 const keyA = {a: 1};
 const keyB = {b: 2};
 
@@ -259,7 +259,7 @@ myObject // Object {[object Object]: "valueB"}
 
 函数的`name`属性，返回函数名。对象方法也是函数，因此也有`name`属性。
 
-```
+```javascript
 const person = {
   sayName() {
     console.log('hello!');
@@ -273,7 +273,7 @@ person.sayName.name   // "sayName"
 
 如果对象的方法使用了取值函数（`getter`）和存值函数（`setter`），则`name`属性不是在该方法上面，而是该方法的属性的描述对象的`get`和`set`属性上面，返回值是方法名前加上`get`和`set`。
 
-```
+```javascript
 const obj = {
   get foo() {},
   set foo(x) {}
@@ -290,7 +290,7 @@ descriptor.set.name // "set foo"
 
 有两种特殊情况：`bind`方法创造的函数，`name`属性返回`bound`加上原函数的名字；`Function`构造函数创造的函数，`name`属性返回`anonymous`。
 
-```
+```javascript
 (new Function()).name // "anonymous"
 
 var doSomething = function() {
@@ -301,7 +301,7 @@ doSomething.bind().name // "bound doSomething"
 
 如果对象的方法是一个 Symbol 值，那么`name`属性返回的是这个 Symbol 值的描述。
 
-```
+```javascript
 const key1 = Symbol('description');
 const key2 = Symbol();
 let obj = {
@@ -320,7 +320,7 @@ ES5 比较两个值是否相等，只有两个运算符：相等运算符（`==`
 
 ES6 提出“Same-value equality”（同值相等）算法，用来解决这个问题。`Object.is`就是部署这个算法的新方法。它用来比较两个值是否严格相等，与严格比较运算符（===）的行为基本一致。
 
-```
+```javascript
 Object.is('foo', 'foo')
 // true
 Object.is({}, {})
@@ -329,7 +329,7 @@ Object.is({}, {})
 
 不同之处只有两个：一是`+0`不等于`-0`，二是`NaN`等于自身。
 
-```
+```javascript
 +0 === -0 //true
 NaN === NaN // false
 
@@ -339,7 +339,7 @@ Object.is(NaN, NaN) // true
 
 ES5 可以通过下面的代码，部署`Object.is`。
 
-```
+```javascript
 Object.defineProperty(Object, 'is', {
   value: function(x, y) {
     if (x === y) {
@@ -361,7 +361,7 @@ Object.defineProperty(Object, 'is', {
 
 `Object.assign`方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）。
 
-```
+```javascript
 const target = { a: 1 };
 
 const source1 = { b: 2 };
@@ -375,7 +375,7 @@ target // {a:1, b:2, c:3}
 
 注意，如果目标对象与源对象有同名属性，或多个源对象有同名属性，则后面的属性会覆盖前面的属性。
 
-```
+```javascript
 const target = { a: 1, b: 1 };
 
 const source1 = { b: 2, c: 2 };
@@ -387,27 +387,27 @@ target // {a:1, b:2, c:3}
 
 如果只有一个参数，`Object.assign`会直接返回该参数。
 
-```
+```javascript
 const obj = {a: 1};
 Object.assign(obj) === obj // true
 ```
 
 如果该参数不是对象，则会先转成对象，然后返回。
 
-```
+```javascript
 typeof Object.assign(2) // "object"
 ```
 
 由于`undefined`和`null`无法转成对象，所以如果它们作为参数，就会报错。
 
-```
+```javascript
 Object.assign(undefined) // 报错
 Object.assign(null) // 报错
 ```
 
 如果非对象参数出现在源对象的位置（即非首参数），那么处理规则有所不同。首先，这些参数都会转成对象，如果无法转成对象，就会跳过。这意味着，如果`undefined`和`null`不在首参数，就不会报错。
 
-```
+```javascript
 let obj = {a: 1};
 Object.assign(obj, undefined) === obj // true
 Object.assign(obj, null) === obj // true
@@ -415,7 +415,7 @@ Object.assign(obj, null) === obj // true
 
 其他类型的值（即数值、字符串和布尔值）不在首参数，也不会报错。但是，除了字符串会以数组形式，拷贝入目标对象，其他值都不会产生效果。
 
-```
+```javascript
 const v1 = 'abc';
 const v2 = true;
 const v3 = 10;
@@ -426,7 +426,7 @@ console.log(obj) // {"0": "a", "1":"b", "2":"c"}
 
 上面代码中，`v1`、`v2`、`v3`分别是字符串、布尔值和数值，结果只有字符串合人目标对象（以字符组的形式），数值和布尔值都会被忽略。这是因为 只有字符串的包装对象，会产生枚举属性
 
-```
+```javascript
 Object(true) // {[[PrimitiveValue]]: true}
 Object(10)  //  {[[PrimitiveValue]]: 10}
 Object('abc') // {0: "a", 1: "b", 2: "c", length: 3, [[PrimitiveValue]]: "abc"}
@@ -436,7 +436,7 @@ Object('abc') // {0: "a", 1: "b", 2: "c", length: 3, [[PrimitiveValue]]: "abc"}
 
 `Object.assign`拷贝的属性是有限制的，只拷贝源对象的自身属性（不拷贝继承属性），也不拷贝不可枚举的属性（`enumerable: false`）。
 
-```
+```javascript
 Object.assign({b: 'c'},
   Object.defineProperty({}, 'invisible', {
     enumerable: false,
@@ -450,7 +450,7 @@ Object.assign({b: 'c'},
 
 属性名为 Symbol 值的属性，也会被`Object.assign`拷贝。
 
-```
+```javascript
 Object.assign({ a: 'b' }, { [Symbol('c')]: 'd' })
 // { a: 'b', Symbol(c): 'd' }
 ```
@@ -461,7 +461,7 @@ Object.assign({ a: 'b' }, { [Symbol('c')]: 'd' })
 
 `Object.assign`方法实行的是浅拷贝，而不是深拷贝。也就是说，如果源对象某个属性的值是对象，那么目标对象拷贝得到的是这个对象的引用。
 
-```
+```javascript
 const obj1 = { a: { b: 1}};
 const obj2 = Object.assign({}, obj1);
 
@@ -475,7 +475,7 @@ obj2.a.b //2
 
 对于这种嵌套的对象，一旦遇到同名属性，`Object.assign`的处理方法是替换，而不是添加。
 
-```
+```javascript
 const target = { a: { b: 'c', d: 'e'}}
 const source = { a: { b: 'hello' }}
 Object.assign(target, source)
@@ -491,7 +491,7 @@ Object.assign(target, source)
 
 `Object.assign`可以用来处理数组，但是会把数组视为对象。
 
-```
+```javascript
 Object.assign([1, 2, 3], [4, 5])
 // [4, 5, 3]
 ```
@@ -502,7 +502,7 @@ Object.assign([1, 2, 3], [4, 5])
 
 `Object.assign`只能进行值的复制，如果要复制的值是一个取值函数，那么将求值后再复制。
 
-```
+```javascript
 const source = {
   get foo() { return 1 }
 };
@@ -520,7 +520,7 @@ Object.assign(target, source)
 
 **（1）为对象添加属性**
 
-```
+```javascript
 class Point{
     constructor(x, y){        
     	Object.assign(this, {x, y})
@@ -532,7 +532,7 @@ class Point{
 
 **（2）为对象添加方法**
 
-```
+```javascript
 Object.assign(SomeClass.prototype, {
   someMethod(arg1, arg2) {
     ···
@@ -559,7 +559,7 @@ SomeClass.prototype.anotherMethod = function () {
 
 对象的每个属性都有一个描述对象（Descriptor），用来控制该属性的行为。`Object.getOwnPropertyDescriptor`方法可以获取该属性的描述对象。
 
-```
+```javascript
 let obj = { foo : 123 };
 Object.getOwnProperyDescriptor(obj, 'foo')
 //  {
@@ -581,7 +581,7 @@ Object.getOwnProperyDescriptor(obj, 'foo')
 
 这四个操作中，前三个是 ES5 就有的，最后一个 `Object.assign()`是 ES6 新增的。其中，只有 `for...in`会返回继承的属性，其他三个方法都会忽略继承的属性，只处理对象自身的属性。实际上，引入“可枚举”（`enumerable`）这个概念的最初目的，就是让某些属性可以规避掉 `for...in`操作，不然所有内部属性和方法都会被遍历到。比如，对象原型的 `toString`方法，以及数组的 `length`属性，就通过“可枚举性”，从而避免被 `for...in`遍历到。
 
-```
+```javascript
 Object.getOwnPropertyDescriptor(Object.prototype,'toString').enumerable
 // false
 Object.getOwnPropertyDescriptor([], 'length').enumerable
@@ -592,7 +592,7 @@ Object.getOwnPropertyDescriptor([], 'length').enumerable
 
 另外， ES6 规定，所有 Class 的原型的方法都是不可枚举的。
 
-```
+```javascript
 Object.getOwnPropertyDescriptor(class {foo() {}}.prototype, 'foo').enumerable
 // false
 ```
@@ -629,7 +629,7 @@ ES6 一共有五种方法可以遍历对象的属性。
 - 其次遍历所有字符串键，按照加入时间升序排列
 - 最后遍历所有 Symbol 键，按照加入时间升序排列
 
-```
+```javascript
 Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
 // ["2", "10", "b", "a", Symbol()]
 ```
@@ -640,7 +640,7 @@ Reflect.ownKeys({ [Symbol()]:0, b:0, 10:0, 2:0, a:0 })
 
 `Object.getOwnPropertyDescriptor`方法会返回某个对象属性的描述对象（descriptor）。ES2017 引入了`Object.getOwnPropertyDescriptors`方法，返回指定对象所有自身属性（非继承属性）的描述对象。
 
-```
+```javascript
 const obj = {
   foo: 123,
   get bar() { return 'abc' }
@@ -669,7 +669,7 @@ Object.getOwnPropertyDescriptors(obj)
 
 该方法的实现非常容易。
 
-```
+```javascript
 function getOwnPropertyDescriptors(obj){
     const result = {};
     for(let key of Reflect.OwnKeys(obj)){
@@ -681,7 +681,7 @@ function getOwnPropertyDescriptors(obj){
 
 该方法的引入目的，主要是为了解决`Object.assign()`无法正确拷贝`get`属性和`set`属性的问题。
 
-```
+```javascript
 const source = {
     set foo(value){
         console.log(value);
@@ -704,7 +704,7 @@ Object.getOwnPropertyDescriptor(target1, 'foo');
 
 这时，`Object.getOwnPropertyDescriptors`方法配合`Object.defineProperties`方法，就可以实现正确拷贝。
 
-```
+```javascript
 const source = {
     set foo(value){
         console.log(value);
@@ -723,7 +723,7 @@ Object.getOwnPropertyDescriptor(target2, 'foo')
 
 上面代码中，两个对象合并的逻辑可以写成一个函数。
 
-```
+```javascript
 const shallowMerge = (target, source) => Object.defineProperties(
 	target,
 	Object.getOwnPropertyDescriptors(source)
@@ -732,7 +732,7 @@ const shallowMerge = (target, source) => Object.defineProperties(
 
 `bject.getOwnPropertyDescriptors`方法的另一个用处，是配合`Object.create`方法，将对象属性克隆到一个新对象。这属于浅拷贝。
 
-````
+````javascript
 const clone => Object.create(Object.getPrototype(obj), Object.getOwnPropertyDescriptors(obj))
 
 // 或者
@@ -746,7 +746,7 @@ const shallowClone = (obj) => Object.create(
 
 另外，`Object.getOwnPropertyDescriptors`方法可以实现一个对象继承另一个对象。以前，继承另一个对象，常常写成下面这样。
 
-```
+```javascript
 const obj = {
   __proto__: prot,
   foo: 123,
@@ -755,7 +755,7 @@ const obj = {
 
 ES6 规定`__proto__`只有浏览器要部署，其他环境不用部署。如果去除`__proto__`，上面代码就要改成下面这样。
 
-```
+```javascript
 const obj = Object.create(prot);
 obj.foo = 123;
 
@@ -771,7 +771,7 @@ const obj = Object.assign(
 
 有了`Object.getOwnPropertyDescriptors`，我们就有了另一种写法。
 
-```
+```javascript
 const obj = Object.create(
   prot,
   Object.getOwnPropertyDescriptors({
@@ -782,7 +782,7 @@ const obj = Object.create(
 
 `Object.getOwnPropertyDescriptors`也可以用来实现 Mixin（混入）模式。
 
-```
+```javascript
 let mix = (object) => ({
   with: (...mixins) => mixins.reduce(
     (c, mixin) => Object.create(

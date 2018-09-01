@@ -17,3 +17,5 @@
 13. [ES6-Reflect](./ES6-Reflect.md)
 14. [ES6-Promise对象](./ES6-Promise对象.md)
 15. [ES6-Iterator和for-of循环](./ES6-Iterator和for-of循环.md)
+16. [ES6-Generator函数的语法](./ES6-Generator函数的语法.md)
+

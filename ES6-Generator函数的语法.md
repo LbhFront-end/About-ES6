@@ -1,16 +1,16 @@
 # Generator 函数的语法
 
-1. [简介](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-generator函数的语法.md#简介)
-2. [next 方法的参数](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-generator函数的语法.md#next-方法的参数)
-3. [for...of 循环](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-generator函数的语法.md#forof-循环)
-4. [Generator.prototype.throw()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-generator函数的语法.md#generatorprototypethrow)
-5. [Generator.prototype.return()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-generator函数的语法.md#generatorprototypereturn)
-6. [next()、throw()、return() 的共同点](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-generator函数的语法.md#nextthrowreturn-的共同点)
-7. [yield\* 表达式](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-generator函数的语法.md#yield-表达式)
-8. [作为对象属性的 Generator 函数](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-generator函数的语法.md#作为对象属性的-generator-函数)
-9. [Generator 函数的this](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-generator函数的语法.md#generator-函数的this)
-10. [含义](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-generator函数的语法.md#含义)
-11. [应用](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-generator函数的语法.md#应用)
+1. [简介](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Generator函数的语法.md#简介)
+2. [next 方法的参数](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Generator函数的语法.md#next-方法的参数)
+3. [for...of 循环](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Generator函数的语法.md#forof-循环)
+4. [Generator.prototype.throw()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Generator函数的语法.md#generatorprototypethrow)
+5. [Generator.prototype.return()](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Generator函数的语法.md#generatorprototypereturn)
+6. [next()、throw()、return() 的共同点](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Generator函数的语法.md#nextthrowreturn-的共同点)
+7. [yield\* 表达式](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Generator函数的语法.md#yield-表达式)
+8. [作为对象属性的 Generator 函数](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Generator函数的语法.md#作为对象属性的-generator-函数)
+9. [Generator 函数的this](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Generator函数的语法.md#generator-函数的this)
+10. [含义](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Generator函数的语法.md#含义)
+11. [应用](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Generator函数的语法.md#应用)
 
 
 

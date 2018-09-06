@@ -18,4 +18,5 @@
 14. [ES6-Promise对象](./ES6-Promise对象.md)
 15. [ES6-Iterator和for-of循环](./ES6-Iterator和for-of循环.md)
 16. [ES6-Generator函数的语法](./ES6-Generator函数的语法.md)
-
+17. [ES6-Generator函数的异步应用](./ES6-Generator函数的异步应用.md)
+18. [ES6-async函数](./ES6-async函数.md)

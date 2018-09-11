@@ -20,3 +20,5 @@
 16. [ES6-Generator函数的语法](./ES6-Generator函数的语法.md)
 17. [ES6-Generator函数的异步应用](./ES6-Generator函数的异步应用.md)
 18. [ES6-async函数](./ES6-async函数.md)
+19. [ES6-Class的基本语法.md](./ES6-Class的基本语法.md)
+

@@ -22,3 +22,4 @@
 18. [ES6-async函数](./ES6-async函数.md)
 19. [ES6-Class的基本语法.md](./ES6-Class的基本语法.md)
 20. [ES6-Class的继承.md](./ES6-Class的继承.md)
+21. [ES6-Decorator.md](./ES6-Decorator.md)

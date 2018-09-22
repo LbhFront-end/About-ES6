@@ -1,9 +1,9 @@
 # 修饰器
 
 1. [类的修饰](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Decorator.md#类的修饰)
-2. [类的修饰](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Decorator.md#类的修饰)
-3. [为什么修饰器不能用于函数？](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Decorator.md#为什么修饰器不能用于函数？)
-4. [core-decorators.js](https://github.com/LbhFront-end/About-ES6/blob/master/core-decoratorsjs)
+2. [方法的修饰](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Decorator.md#方法的修饰)
+3. [为什么修饰器不能用于函数？](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Decorator.md#为什么修饰器不能用于函数)
+4. [core-decorators.js](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Decorator.md#core-decoratorsjs)
 5. [使用修饰器实现自动发布事件](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Decorator.md#使用修饰器实现自动发布事件)
 6. [Mixin](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Decorator.md#mixin)
 7. [Trait](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Decorator.md#trait)

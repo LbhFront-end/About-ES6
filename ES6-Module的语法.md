@@ -3,7 +3,7 @@
 1. [概述](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Module的语法.md#概述)
 2. [严格模式](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Module的语法.md#严格模式)
 3. [export 命令？](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Module的语法.md#export-命令)
-4. [import 命令](https://github.com/LbhFront-end/About-ES6/blob/master/import-命令)
+4. [import 命令](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Module的语法.md#import-命令)
 5. [模块的整体加载](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Module的语法.md#模块的整体加载)
 6. [export default 命令](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Module的语法.md#export-default-命令)
 7. [export 与 import 的复合写法](https://github.com/LbhFront-end/About-ES6/blob/master/ES6-Module的语法.md#export-与-import-的复合写法)

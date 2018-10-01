@@ -24,3 +24,4 @@
 20. [ES6-Class的继承](./ES6-Class的继承.md)
 21. [ES6-Decorator](./ES6-Decorator.md)
 22. [ES6-Module的语法](./ES6-Module的语法.md)
+23. [ES6-Module的加载实现](./ES6-Module的加载实现.md)

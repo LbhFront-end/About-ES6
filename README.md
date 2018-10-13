@@ -24,3 +24,4 @@
 22. [ES6-Module的语法](./ES6-Module的语法.md)
 23. [ES6-Module的加载实现](./ES6-Module的加载实现.md)
 24. [ES6-编程风格](./ES6-编程风格.md)
+25. [ES6-ArrayBuffer](./ES6-ArrayBuffer.md)

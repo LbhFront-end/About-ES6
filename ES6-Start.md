@@ -22,7 +22,7 @@ ES6 是一个历史名词，也是一个泛指，含义是 5.1 版本以后的 J
 
 Node 是 JavaScript 的服务器运行环境 （runtime）。它对 ES6 的支持度更高，除了那些默认打开的功能，还有一些语法功能已经实现了，但是默认没有打开。使用以下命令，可以看 Node 已经实现的 ES6 的特征
 
-```cmd
+```bash
 $ node --v8-options | grep harmony
 ```
 
@@ -55,7 +55,7 @@ Babel 的配置文件是 `.babelrc` ，存放在项目的根目录下
 
 `persets` 字段设定转码规则，可以根据官方的规则按需下载
 
-```cmd
+```bash
  # 最新转码规则
  $ npm i -S -D babel-preset-latest
  
@@ -86,13 +86,13 @@ Babel 的配置文件是 `.babelrc` ，存放在项目的根目录下
 
 Babel 提供 `babel-cli` 工具，用于命令行的转码
 
-```cmd
+```bash
  $ npm i -g babel-cli
 ```
 
 基本用法
 
-```cmd
+```bash
 # 转码结果输出到标准输出
 $ babel example.js
 
@@ -116,7 +116,7 @@ $ babel src -d lib -s
 
 一个解决办法是将`babel-cli`安装在项目之中。 
 
-```cmd
+```bash
 # 安装
 $ npm install --save-dev babel-cli
 ```
@@ -137,7 +137,7 @@ $ npm install --save-dev babel-cli
 
 转码的时候，就执行下面的命令。
 
-```cmd
+```bash
 $ npm run build
 ```
 
@@ -147,7 +147,7 @@ $ npm run build
 
 它不用单独安装，而是随`babel-cli`一起安装。然后，执行`babel-node`就进入 REPL 环境。
 
-```cmd
+```bash
 $ babel-node
 > (x => x * 2)(1)
 2
@@ -155,14 +155,14 @@ $ babel-node
 
 `babel-node`命令可以直接运行 ES6 脚本。将上面的代码放入脚本文件`es6.js`，然后直接运行。
 
-```cmd
+```bash
 $ babel-node es6.js
 2
 ```
 
 `babel-node`也可以安装在项目中。
 
-```cmd
+```bash
 $ npm install --save-dev babel-cli
 ```
 
@@ -182,7 +182,7 @@ $ npm install --save-dev babel-cli
 
 `babel-register`模块改写`require`命令，为它加上一个钩子。此后，每当使用`require`加载`.js`、`.jsx`、`.es`和`.es6`后缀名的文件，就会先用 Babel 进行转码。
 
-```cmd
+```bash
 $ npm install --save-dev babel-register
 ```
 
@@ -203,7 +203,7 @@ require("./index.js");
 
 安装命令如下。
 
-```cmd
+```bash
 $ npm install babel-core --save
 ```
 
@@ -254,7 +254,7 @@ Babel 默认只转换新的 JavaScript 句法（syntax），而不转换新的 A
 
 安装命令如下。
 
-```cmd
+```bash
 $ npm install --save babel-polyfill
 ```
 
@@ -283,13 +283,13 @@ Babel 也可以用于浏览器环境。但是，从 Babel 6.0 开始，不再直
 
 下面是如何将代码打包成浏览器可以使用的脚本，以`Babel`配合`Browserify`为例。首先，安装`babelify`模块。
 
-```cmd
+```bash
 $ npm install --save-dev babelify babel-preset-latest
 ```
 
 然后，再用命令行转换 ES6 脚本。
 
-```cmd
+```bash
 $  browserify script.js -o bundle.js \
   -t [ babelify --presets [ latest ] ]
 ```
